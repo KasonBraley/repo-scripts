@@ -29,3 +29,14 @@ jobs:
           # see this issue for more information
           # https://github.com/golangci/golangci-lint-action/issues/119
           args: --timeout=5m --out-${NO_FUTURE}format colored-line-number
+
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-go@v4
+        with:
+          go-version-file: go.mod
+
+      - name: Build
+        run: go build -v -o . ./...
